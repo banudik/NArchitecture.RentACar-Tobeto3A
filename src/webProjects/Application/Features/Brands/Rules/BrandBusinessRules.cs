@@ -1,5 +1,7 @@
 ﻿using Application.Services.Repositories;
+using Azure.Core;
 using Core.Application.Rules;
+using Core.CrossCuttingConcerns.Exceptions.Types;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Brands.Rules;
 
-public class BrandBusinessRules:BaseBusinessRules
+public class BrandBusinessRules : BaseBusinessRules
 {
     private readonly IBrandRepository _brandRepository;
 
@@ -30,4 +32,5 @@ public class BrandBusinessRules:BaseBusinessRules
         if (result != null)
             throw new Exception("Brand name already exist");
     }
+
 }

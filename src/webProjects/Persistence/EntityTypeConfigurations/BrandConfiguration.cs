@@ -15,6 +15,8 @@ public class BrandConfiguration:IEntityTypeConfiguration<Brand>
         builder.Property(x => x.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(x => x.DeletedDate).HasColumnName("DeletedDate");
 
+        builder.HasQueryFilter(x => !x.DeletedDate.HasValue);
+
         builder.HasMany(x => x.Models);
     }
 }
