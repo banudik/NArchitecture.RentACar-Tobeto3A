@@ -10,4 +10,5 @@ namespace Application.Features.Brands.Dtos;
 public class DeletedBrandResponse:IResponse
 {
     public int Id { get; set; }
+    public DateTime CreatedDate { get; set; }
 }

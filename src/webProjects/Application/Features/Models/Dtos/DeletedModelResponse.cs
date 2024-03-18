@@ -10,4 +10,5 @@ namespace Application.Features.Models.Dtos;
 public class DeletedModelResponse:IResponse
 {
     public int Id { get; set; }
+    public DateTime CreatedDate { get; set; }
 }

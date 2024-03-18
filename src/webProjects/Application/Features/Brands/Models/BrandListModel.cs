@@ -10,5 +10,5 @@ namespace Application.Features.Brands.Models;
 
 public class BrandListModel:BasePageableModel
 {
-    public IList<GetListBrandResponse> Items { get; set; }
+    public IList<GetListBrandResponse> ListBrands { get; set; }
 }

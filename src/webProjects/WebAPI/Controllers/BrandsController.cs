@@ -17,7 +17,7 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class BrandsController : BaseController
 {
-    [HttpPost]
+    [HttpPost("Add")]
     public async Task<IActionResult> Add([FromBody] CreateBrandCommand command)
     {
         return Created("", await Mediator.Send(command));
@@ -46,7 +46,7 @@ public class BrandsController : BaseController
         return Created("", await Mediator.Send(query));
     }
 
-    [HttpGet("pagination")]
+    [HttpGet("Pagination")]
     public async Task<IActionResult> GetListPagination([FromQuery] PageRequest pageRequest)
     {
         GetListPaginationBrandQuery query = new() { PageRequest = pageRequest };
@@ -54,7 +54,7 @@ public class BrandsController : BaseController
         return Ok(result);
     }
 
-    [HttpPost("dynamic")]
+    [HttpPost("Dynamic")]
     public async Task<IActionResult> GetListDynamic([FromQuery] PageRequest pageRequest, [FromBody] Dynamic dynamic)
     {
         GetListBrandDynamicQuery brandDynamicQuery = new() { PageRequest = pageRequest, Dynamic = dynamic };

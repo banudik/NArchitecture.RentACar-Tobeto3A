@@ -10,4 +10,6 @@ namespace Application.Features.Cars.Dtos;
 public class DeletedCarResponse:IResponse
 {
     public int Id { get; set; }
+
+    public DateTime CreatedDate { get; set; }
 }

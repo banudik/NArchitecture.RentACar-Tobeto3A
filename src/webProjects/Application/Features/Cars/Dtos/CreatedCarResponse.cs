@@ -14,4 +14,6 @@ public class CreatedCarResponse:IResponse
     public string Plate { get; set; }
     public int State { get; set; }
     public double DailyPrice { get; set; }
+
+    public DateTime CreatedDate { get; set; }
 }
