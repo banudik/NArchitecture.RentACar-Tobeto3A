@@ -10,7 +10,7 @@ using Domain.Entities;
 
 namespace Application.Features.Cars.Profiles;
 
-public class MappingProfiles:Profile
+public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
@@ -25,7 +25,7 @@ public class MappingProfiles:Profile
 
         CreateMap<Car, GetByIdCarResponse>().ReverseMap();
 
-        CreateMap<Car, GetListCarResponse>().ReverseMap();
+        CreateMap<Car, GetListCarResponse>().ForMember(destinationMember: x => x.BrandName, memberOptions: opt => opt.MapFrom(x => x.Model.Brand.Name));
         CreateMap<IPaginate<Car>, CarListModel>().ReverseMap();
     }
 }

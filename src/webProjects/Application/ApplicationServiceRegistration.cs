@@ -11,6 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
 using System.Reflection;
 using Core.Application.Pipelines.Caching;
+using Application.Services.AuthServices.AuthService;
+using Application.Services.AuthServices.UserService;
+using Application.Services.CarImageService;
+using Core.Application.Pipelines.Authorization;
+using Core.Security.JWT;
 
 namespace Application;
 
@@ -26,6 +31,12 @@ public static class ApplicationServiceRegistration
         services.AddSingleton<LoggerServiceBase, MongoDbLogger>();
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+        services.AddScoped<CarImageBusinessRules>();
+        services.AddScoped<ICarImageService, CarImageManager>();
+        services.AddScoped<IUserService, UserManager>();
+        services.AddScoped<IAuthService, AuthManager>();
+        services.AddSingleton<TokenOptions>();
+
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
@@ -33,6 +44,7 @@ public static class ApplicationServiceRegistration
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheRemovingBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
         return services;
     }
 

@@ -4,6 +4,7 @@ using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ public class GetListCarQueryHandler: IRequestHandler<GetListCarQuery, List<GetLi
 
     public async Task<List<GetListCarResponse>> Handle(GetListCarQuery request, CancellationToken cancellationToken)
     {
-        List<Car> cars = await _carRepository.GetAllAsync();
+        List<Car> cars = await _carRepository.GetAllAsync(include: x => x.Include(x => x.Model).Include(x => x.Model.Brand));
         List<GetListCarResponse> getListCarResponses = _mapper.Map<List<GetListCarResponse>>(cars);
         return getListCarResponses;
     }
